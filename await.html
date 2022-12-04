@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .one{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(219, 199, 237);
+            border-radius: 50%;
+            line-height: 100px;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        .two{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(112, 101, 234);
+            border-radius: 50%;
+            line-height: 100px;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+        .three{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(255, 217, 0);
+            border-radius: 50%;
+            line-height: 100px;
+            position: relative;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="one"></div>
+    <div class="two"></div>
+    <div class="three"></div>
+    <script>
+        let one = document.querySelector('.one');
+        let two = document.querySelector('.two');
+        let three = document.querySelector('.three');
+
+        function interval(target){
+            let left = one.offsetLeft;
+            let t = setTimeout(function(){
+                left +=13;
+                one.style.left = left+'px';
+                if(left>=target){
+                    one.style.left =target+'px';
+                }
+                setTimeout(function(){
+                    two.offsetLeft += 13;
+                    two.style.left=two.offsetLeft+'px';
+                    if(two.offsetLeft>=target){
+                        two.style.left=target +'px';
+                    }
+                    setTimeout(function(){
+                        three.offsetLeft += 13;
+                        three.style.left = three.offsetLeft+'px';
+                        if(three.offsetLeft>=target){
+                            three.style.left = target+'px';
+                        }
+                    },1000);
+                },1000/90);
+                interval(target);
+            },1000/60)
+        }
+        interval(500);
+
+        async function move(){
+            const target = await interval(target);
+            console.log(target);
+        }
+        move();
+    </script>
+</body>
+</html>
